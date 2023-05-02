@@ -55,7 +55,8 @@
         <th scope="col">Дата выдачи</th>
         <th scope="col">Дата возврата</th>
         <th scope="col">В наличии</th>
-        <th scope="col">Email пользователя</th>
+        <th scope="col">ID пользователя</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -67,16 +68,19 @@
         <th scope="row" class="table-tr date_of_issue" th:text="${Books.getDate_of_issue()}"></th>
         <th scope="row" class="table-tr" th:text="${Books.getDate_of_return()}"></th>
         <th scope="row" class="table-tr" th:text="${Books.isAvailable()}"></th>
+        <th scope="row" class="table-tr" th:text="${Books.getUserEmail()}"></th>
         <th scope="row" class="table-tr">
-    <span th:if="${Books.getUserEmail() == null or Books.getUserEmail().isEmpty()}">
-        <form th:action="@{/addEmail}" method="post">
-            <input type="hidden" name="bookId" th:value="${Books.getId()}"/>
-            <input type="hidden" name="userName" th:value="${currentUserName}"/>
-            <button type="submit" class="btn btn-primary">Забрать книгу</button>
-        </form>
-    </span>
-            <span th:if="${Books.getUserEmail() != null and !Books.getUserEmail().isEmpty()}" th:text="${Books.getUserEmail()}"></span>
+            <a th:href="@{'/edit/'+${Books.getId()}}">
+                <button type="button" class="btn btn-info"><img
+                        src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" height="20" width="20"></button>
+            </a>
+            <a th:href="@{'/delete/'+${Books.getId()}}">
+                <button type="button" class="btn btn-danger">
+                    ✘
+                </button>
+            </a>
         </th>
+    </tr>
     </tbody>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.0.2/tablesort.min.js'></script>
     <script>
@@ -84,11 +88,11 @@
     </script>
 
 </table>
-<!--<blockquote class="blockquote text-center">-->
-<!--    <button id="openDialog1" type="button" class="btn btn-primary" data-togge="button" aria-pressed="false">-->
-<!--        Добавить-->
-<!--    </button>-->
-<!--</blockquote>-->
+<blockquote class="blockquote text-center">
+    <button id="openDialog1" type="button" class="btn btn-primary" data-togge="button" aria-pressed="false">
+        Добавить
+    </button>
+</blockquote>
 
 
 <dialog id="d1">
