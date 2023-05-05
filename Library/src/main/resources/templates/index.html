@@ -38,6 +38,7 @@
             </form>
         </a>
         <a href="/personalAccount">Личный кабинет</a>
+        <a href="/admin">Админ</a>
         <a>
             <form th:action="@{/logout}" method="post" style='float: right;'>
                 <input type="submit" class="btn btn-light" value="Выйти"/>
@@ -66,7 +67,10 @@
         <th scope="row" class="table-tr" th:text="${Books.getGenre()}"></th>
         <th scope="row" class="table-tr date_of_issue" th:text="${Books.getDate_of_issue()}"></th>
         <th scope="row" class="table-tr" th:text="${Books.getDate_of_return()}"></th>
-        <th scope="row" class="table-tr" th:text="${Books.isAvailable()}"></th>
+        <th scope="row" class="table-tr">
+            <span th:if="${Books.isAvailable()}">Да</span>
+            <span th:if="${!Books.isAvailable()}">Нет</span>
+        </th>
         <th scope="row" class="table-tr">
     <span th:if="${Books.getUserEmail() == null or Books.getUserEmail().isEmpty()}">
         <form th:action="@{/addEmail}" method="post">
@@ -121,7 +125,7 @@
                 <td><input type="text" th:field="*{available}"></td>
             </tr>
             <tr>
-                <td>ID пользователя:</td>
+                <td>Email пользователя:</td>
                 <td><input type="text" th:field="*{userEmail}"></td>
             </tr>
             <tr>

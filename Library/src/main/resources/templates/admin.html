@@ -16,7 +16,7 @@
             </img></a>
     </div>
     <nav>
-        <a class="active" href="/">Главная</a>
+        <a href="/">Главная</a>
         <a href="/aboutAuthor">Об авторе</a>
         <a>
             <form th:action="@{/}">
@@ -38,6 +38,7 @@
             </form>
         </a>
         <a href="/personalAccount">Личный кабинет</a>
+        <a class="active" href="/admin">Админ</a>
         <a>
             <form th:action="@{/logout}" method="post" style='float: right;'>
                 <input type="submit" class="btn btn-light" value="Выйти"/>
@@ -55,7 +56,7 @@
         <th scope="col">Дата выдачи</th>
         <th scope="col">Дата возврата</th>
         <th scope="col">В наличии</th>
-        <th scope="col">ID пользователя</th>
+        <th scope="col">Email пользователя</th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -67,7 +68,10 @@
         <th scope="row" class="table-tr" th:text="${Books.getGenre()}"></th>
         <th scope="row" class="table-tr date_of_issue" th:text="${Books.getDate_of_issue()}"></th>
         <th scope="row" class="table-tr" th:text="${Books.getDate_of_return()}"></th>
-        <th scope="row" class="table-tr" th:text="${Books.isAvailable()}"></th>
+        <th scope="row" class="table-tr">
+            <span th:if="${Books.isAvailable()}">Да</span>
+            <span th:if="${!Books.isAvailable()}">Нет</span>
+        </th>
         <th scope="row" class="table-tr" th:text="${Books.getUserEmail()}"></th>
         <th scope="row" class="table-tr">
             <a th:href="@{'/edit/'+${Books.getId()}}">
@@ -122,10 +126,15 @@
             </tr>
             <tr>
                 <td>В наличии?:</td>
-                <td><input type="text" th:field="*{available}"></td>
+                <td>
+                    <select th:field="*{available}">
+                        <option value="true">Да</option>
+                        <option value="false">Нет</option>
+                    </select>
+                </td>
             </tr>
             <tr>
-                <td>ID пользователя:</td>
+                <td>Email пользователя:</td>
                 <td><input type="text" th:field="*{userEmail}"></td>
             </tr>
             <tr>
