@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.factory;
 
 import jakarta.persistence.*;
 
@@ -9,7 +9,7 @@ import java.util.Collection;
  * @author Farkhutdinov Aidar
  */
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
 	/**

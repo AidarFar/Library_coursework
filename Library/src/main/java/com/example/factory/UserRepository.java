@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.factory;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

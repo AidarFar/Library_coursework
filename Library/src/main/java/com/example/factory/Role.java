@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.factory;
 
 import jakarta.persistence.*;
 
@@ -8,7 +8,7 @@ import jakarta.persistence.*;
  @author Farkhutdinov Aidar
  */
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
 
 	@Id

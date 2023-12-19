@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.factory;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
